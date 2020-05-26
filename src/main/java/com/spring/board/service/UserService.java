@@ -25,5 +25,9 @@ public class UserService {
 		return check;
 	}
 	
+	//회원가입을 위한 메서드
+	public void signUp(HashMap<String, Object> signUpMap)throws Exception {
+		userDao.signUp(signUpMap);
+	}
 	
 }

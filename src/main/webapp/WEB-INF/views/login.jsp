@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Hyeonjae's 1st Bulletin Board System LoginPage</title>
+<title> JaehongPage</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- jquery 사용 -->
@@ -20,5 +20,7 @@
 		
 		<button onclick="validateLogin();return false;">로그인</button>
 	</form>
+	
+	<a href="signUp">회원가입</a>
 </body>
 </html>

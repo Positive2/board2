@@ -28,7 +28,9 @@ public class UserDao {
 	}
 	
 	//회원 가입을 위한 메서드
-	
+	public void signUp(HashMap<String, Object> signUpFormMap) throws Exception{
+		sqlSeesion.insert(NAMESPACE_USER + ".signUp", signUpFormMap);
+	}
 	// 회원 메일에서 아이디 활성화 요청을 위한 메서드
 	
 	// 로그인시 최근 로그인 시간 업데이트

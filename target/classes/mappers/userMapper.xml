@@ -4,10 +4,20 @@
 <mapper namespace="com.spring.board.userMapper">
 
 <select id="login" parameterType="java.util.HashMap" resultType="com.spring.board.dto.UserDto">
-		select *
-		from board.UserTable
-		where u_id = #{u_id}
-		and u_pwd = #{u_pwd}
+		SELECT *
+		FROM board.UserTable
+		WHERE U_ID = #{u_id}
+		AND U_PWD = #{u_pwd}
 </select>
+
+
+<insert id="signUp" parameterType="java.util.HashMap">
+	INSERT INTO board.UserTable
+	(U_ID, U_PWD, U_NAME, U_SEX, 
+	 U_BIRTHDAY, U_EMAIL, U_PHONE_NUMBER)
+	 VALUES
+	 (#{id}, #{pwd}, #{name}, #{sex}, 
+	 #{birthday}, #{email}, #{phone})
+</insert>
 
 </mapper>

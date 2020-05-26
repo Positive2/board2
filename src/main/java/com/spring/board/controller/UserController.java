@@ -21,15 +21,17 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	// 게시판 - 목록 페이지 이동 
+	// 로그인 페이지 이동
     @RequestMapping( value = "/login")
     public String login(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
-        return "/login";
+        return "login";
     }
 	
+    
+    //로그인
     @RequestMapping(value="loginForm/login")
-    public @ResponseBody String jsonLogin(@RequestParam HashMap<String, Object> userMap, HttpSession session, HttpServletRequest request) throws Exception{
+    public @ResponseBody String Login(@RequestParam HashMap<String, Object> userMap, HttpSession session, HttpServletRequest request) throws Exception{
     	String result ="NO";
     	if(session.getAttribute("session")!= null) {
     		session.removeAttribute("session");
@@ -40,7 +42,7 @@ public class UserController {
     	if(loginInfo != null) {
     		if(loginInfo.getU_active_state() ==1 ) {
     			session.setAttribute("session", loginInfo);
-    			result = loginInfo.getU_id();
+    			result = loginInfo.getU_name();
     		}
     		else {
     			result = "이메일 비활성화";
@@ -49,5 +51,18 @@ public class UserController {
     	return result;
     }
 	
+ // 회원가입 페이지 이동
+    @RequestMapping(value="/signUp")
+    public String signup(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    	return "signUp";
+    }
+    
+ // 회원가입 요청
+    @RequestMapping(value="signUpForm/signUp")
+    public String responseSignUp(@RequestParam HashMap<String, Object> signUpFormMap) throws Exception{
+    	
+    	userService.signUp(signUpFormMap);
+    	return "redirect:/boardList"; //게시판으로 이동
+    }
 }
 
