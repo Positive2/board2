@@ -15,7 +15,8 @@
 }
 </style>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<!-- 부트스트랩 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -104,13 +105,10 @@ function getBoardListCallback(obj){
 </script>
 </head>
 <body>
-
-	<div class="jumbotron text-center">
-		<h1>게시판 Made by. 재홍</h1>
-		<p>환영합니다!</p>
-	</div>
-
-	<div class="container ">
+	<!-- header -->
+	<jsp:include page="../commons/header.jsp"/>
+	
+	<div class="container">
 		<h2>게시글 목록</h2>
 		<form id="boardForm" name="boardForm">
 			<table width="100%" id="table1" class="table table-striped table-hover" >
@@ -140,6 +138,9 @@ function getBoardListCallback(obj){
 				onclick="javascript:goBoardWrite();">글 작성하기</button>
 		</div>
 	</div>
-
+	
+	<!-- footer -->
+	<jsp:include page="../commons/footer.jsp"/>
+	
 </body>
 </html>

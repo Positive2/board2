@@ -22,32 +22,41 @@ public class UserController {
 	private UserService userService;
 	
 	// 로그인 페이지 이동
-    @RequestMapping( value = "/login")
-    public String login(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        
+    @RequestMapping(value = "/login")
+    public String login(){    
         return "login";
     }
 	
+    // 로그아웃
+    @RequestMapping(value="/logout")
+    public String logout(HttpSession session) {
+    	//세션 종료
+    	session.invalidate();
+    	return "redirect:/boardList";
+    }
     
     //로그인
     @RequestMapping(value="loginForm/login")
     public @ResponseBody String Login(@RequestParam HashMap<String, Object> userMap, HttpSession session, HttpServletRequest request) throws Exception{
     	String result ="NO";
     	if(session.getAttribute("session")!= null) {
+    		//로그인 요청시, 세션값 존재하면 삭제
     		session.removeAttribute("session");
     	}
     	//로그인 시도
     	UserDto loginInfo = userService.login(userMap);
-    	
+    	System.out.println("ok1");
     	if(loginInfo != null) {
-    		if(loginInfo.getU_active_state() ==1 ) {
+    		System.out.println("ok2");
+			/* if(loginInfo.getU_active_state() ==1 ) { */
     			session.setAttribute("session", loginInfo);
+    			System.out.println("loginInfo.getU_name()"+loginInfo.getU_name());
     			result = loginInfo.getU_name();
-    		}
-    		else {
-    			result = "이메일 비활성화";
-    		}
+			/*
+			 * } else { result = "이메일 비활성화"; }
+			 */
     	}
+    	System.out.println("ok3");
     	return result;
     }
 	
@@ -64,5 +73,7 @@ public class UserController {
     	userService.signUp(signUpFormMap);
     	return "redirect:/boardList"; //게시판으로 이동
     }
+    
+    
 }
 

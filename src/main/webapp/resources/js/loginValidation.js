@@ -42,6 +42,7 @@ function validateLogin() {
 					location.href = "loginForm";
 				} else*/ 
 				{
+					
 					alert(data + " 님 안녕하세요");
 					location.href = "boardList";
 				}
