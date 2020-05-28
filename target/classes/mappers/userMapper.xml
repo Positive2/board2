@@ -20,4 +20,10 @@
 	 #{birthday}, #{email}, #{phone})
 </insert>
 
+<select id="idCheck" parameterType="java.lang.String" resultType="java.lang.Integer">
+	select count(*)
+	from board.UserTable
+	where u_id = #{id}
+</select>
+
 </mapper>

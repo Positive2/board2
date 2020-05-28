@@ -96,6 +96,42 @@ function validateSignUp(){
 		$("#phone").focus();
 		return;
 	}
+	alert("정상적으로 회원가입이 되었습니다. 로그인해 주세요.");
 	
 	$("#signUp").submit();
+}
+
+
+function checkDupId(){
+	if($("#id").val() == ""){
+		alert("아이디를 입력해주세요");
+		$("#id").focus();
+		return;
+	}
+	if($("#id").val().length < 4){
+		alert("아이디는 4자리 이상입력해야됩니다.");
+		$("#id").focus();
+		return;
+	}
+	
+	$.ajax({
+		url : "signUpForm/checkDupId",
+		type : "GET",
+		data : {
+			id : $("#id").val()
+		},
+		dataType : "text",
+		success : function(data){
+			
+			$("#id").val(data);
+			if($("#id").val().length == 0){
+				alert("아이디 중복입니다. 다시입력해주세요.");
+				$("#id").focus();
+			}else{
+				alert("사용가능한 아이딥니다.!");
+				$("#pwd").focus();
+			}
+		}
+	});
+	
 }

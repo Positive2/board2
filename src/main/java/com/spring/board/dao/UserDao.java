@@ -24,7 +24,8 @@ public class UserDao {
 	
 	// 아이디 중복 확인 매서드
 	public int idCheck(String checkId) throws Exception{
-		return sqlSeesion.selectOne(NAMESPACE_USER, ".idCheck");
+		
+		return sqlSeesion.selectOne(NAMESPACE_USER + ".idCheck", checkId);
 	}
 	
 	//회원 가입을 위한 메서드

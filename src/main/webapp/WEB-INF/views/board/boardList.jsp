@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- jstl foreach 사용을 위함 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- fomatting formatDate태그 사용을 위함(날짜나 시간 포맷방식지정) -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,86 +27,6 @@
 <!--  JavaScript -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<script type="text/javascript">
-    
-$(document).ready(function(){    
-    getBoardList();
-});
-
-/** 게시판 - 상세 페이지 이동   AWS이용시 앞에 board 추가*/
-function goBoardDetail(boardSeq){                
-    location.href =  "/boardDetail?boardSeq="+ boardSeq;
-}
-
-/** 게시판 - 작성 페이지 이동 */
-function goBoardWrite(){        
-    location.href = "/boardWrite";
-}
-    
-    function getBoardList(){
-    	 
-        $.ajax({    
-        
-            url        : "/board/getBoardList",
-            data    : $("#boardForm").serialize(),
-            dataType:"JSON",
-            cache   : false,
-            async   : true,
-            type    :"POST",    
-            success : function(obj) {
-                getBoardListCallback(obj);                
-            },           
-            error     : function(xhr, status, error) {}
-            
-         });
-    }
-    
-function getBoardListCallback(obj){
-        
-        var list = obj;
-        var listLen = obj.length;
-                
-        var str = "";
-        
-        if(listLen >  0){
-            
-            for(var a=0; a<listLen; a++){
-                
-                var boardSeq        = list[a].board_seq; 
-                var boardReRef         = list[a].board_re_ref; 
-                var boardReLev         = list[a].board_re_lev; 
-                var boardReSeq         = list[a].board_re_seq; 
-                var boardWriter     = list[a].board_writer; 
-                var boardSubject     = list[a].board_subject; 
-                var boardContent     = list[a].board_content; 
-                var boardHits         = list[a].board_hits;
-                var delYn             = list[a].del_yn; 
-                var insUserId         = list[a].ins_user_id;
-                var insDate         = list[a].ins_date; 
-                var updUserId         = list[a].upd_user_id;
-                var updDate         = list[a].upd_date;
-                
-                str += "<tr>";
-                str += "<td>"+ boardSeq +"</td>";
-                str += "<td onclick='javascript:goBoardDetail("+ boardSeq +");' style='cursor:Pointer'>"+ boardSubject +"</td>";
-                str += "<td>"+ boardHits +"</td>";
-                str += "<td>"+ boardWriter +"</td>";    
-                str += "<td>"+ insDate +"</td>";    
-                str += "</tr>";
-                
-            } 
-            
-        } else {
-            
-            str += "<tr>";
-            str += "<td colspan='5'>등록된 글이 존재하지 않습니다.</td>";
-            str += "<tr>";
-        }
-        
-        $("#tbody").html(str);
-    }
-    
-</script>
 </head>
 <body>
 	<!-- header -->
@@ -118,24 +42,37 @@ function getBoardListCallback(obj){
 					<col width="10%" />
 					<col width="15%" />
 					<col width="20%" />
+					<col width="20%" />
 				</colgroup>
 				<thead>
 					<tr>
 						<th>글번호</th>
 						<th>제목</th>
-						<th>조회수</th>
 						<th>작성자</th>
-						<th>작성일</th>
+						<th>조회수</th>
+						<th>추천</th>
+						<th>등록일</th>
 					</tr>
 				</thead>
-				<tbody id="tbody">
-
+				<tbody>
+					<c:forEach items="${list}" var="list">
+						<tr onClick="location.href='getBoardDetail?board_num=${list.board_num}'">
+							<td >${list.board_num}</td>
+							<td>${list.board_title}</td>
+							<td>${list.board_writer}</td>
+							<td>${list.board_hit}</td>
+							<td>${list.board_recommend}</td>							
+							<td>
+								<fmt:formatDate value="${list.board_reg_date}" pattern ="yyyy년 MM월 dd일"/>
+							</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</form>
 		<div class="float-right">
 			<button type="button" class="btn btn-success"
-				onclick="javascript:goBoardWrite();">글 작성하기</button>
+				onclick="location.href='boardWrite'">글 작성하기</button>
 		</div>
 	</div>
 	

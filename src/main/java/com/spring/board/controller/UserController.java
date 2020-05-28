@@ -1,5 +1,6 @@
 package com.spring.board.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ public class UserController {
 	// 로그인 페이지 이동
     @RequestMapping(value = "/login")
     public String login(){    
+    	
         return "login";
     }
 	
@@ -32,7 +34,7 @@ public class UserController {
     public String logout(HttpSession session) {
     	//세션 종료
     	session.invalidate();
-    	return "redirect:/boardList";
+    	return "redirect:/getBoardList";
     }
     
     //로그인
@@ -45,18 +47,12 @@ public class UserController {
     	}
     	//로그인 시도
     	UserDto loginInfo = userService.login(userMap);
-    	System.out.println("ok1");
+    	
     	if(loginInfo != null) {
-    		System.out.println("ok2");
-			/* if(loginInfo.getU_active_state() ==1 ) { */
+    		System.out.println("ok1");
     			session.setAttribute("session", loginInfo);
-    			System.out.println("loginInfo.getU_name()"+loginInfo.getU_name());
-    			result = loginInfo.getU_name();
-			/*
-			 * } else { result = "이메일 비활성화"; }
-			 */
+    			result = loginInfo.getU_id();
     	}
-    	System.out.println("ok3");
     	return result;
     }
 	
@@ -68,10 +64,27 @@ public class UserController {
     
  // 회원가입 요청
     @RequestMapping(value="signUpForm/signUp")
-    public String responseSignUp(@RequestParam HashMap<String, Object> signUpFormMap) throws Exception{
+    public String SignUp(@RequestParam HashMap<String, Object> signUpFormMap) throws Exception{
     	
     	userService.signUp(signUpFormMap);
-    	return "redirect:/boardList"; //게시판으로 이동
+    	return "redirect:/getBoardList"; //게시판으로 이동
+    }
+    
+    // 아이디 중복채크
+    @RequestMapping(value="signUpForm/checkDupId")
+    public @ResponseBody String checkDupId(@RequestParam String id) throws Exception{
+    	int result =0;
+    	String checkId = "";
+    	result = userService.idCheck(id);
+    	//아이디 0이면 사용가능 1이면 중복
+    	if(result == 0) {
+    		checkId =id;
+    	}
+    	else {
+    		checkId ="";
+    	}
+    	
+    	return checkId;
     }
     
     

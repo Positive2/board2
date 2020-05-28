@@ -1,5 +1,6 @@
 package com.spring.board.service;
  
+import java.util.HashMap;
 import java.util.List;
  
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,88 +8,46 @@ import org.springframework.stereotype.Service;
  
 import com.spring.board.dao.BoardDao;
 import com.spring.board.dto.BoardDto;
-import com.spring.board.form.BoardForm;
  
 @Service
 public class BoardService {
  
     @Autowired
     private BoardDao boardDao;
- 
-    /* 게시판 - 목록 조회 */
-    public List<BoardDto> getBoardList(BoardForm boardForm) throws Exception {
- 
-        return boardDao.getBoardList(boardForm);
+    // 게시판 read
+    public BoardDto boardRead(HashMap<String, Object> updateBoard) throws Exception{
+    	return boardDao.boardRead(updateBoard);
+    }
+    
+    // 게시판 조회
+    public List<BoardDto> getBoardList() throws Exception {
+        return boardDao.getBoardList();
     }
  
-    /* 게시판 - 상세 조회 */
-    public BoardDto getBoardDetail(BoardForm boardForm) throws Exception {
+    // 게시판 detail
+    public BoardDto getBoardDetail(BoardDto boardMap) throws Exception {
+    	return boardDao.getBoardDetail(boardMap);
+    }
  
-        BoardDto boardDto = new BoardDto();
+    // 게시판 insert
+    public void boardWrite(HashMap<String, Object> boardWrite) throws Exception {
+    		boardDao.boardWrite(boardWrite);
+    }
  
-        String searchType = boardForm.getSearch_type();
+    // 게시판 delete
+    public void deleteBoard() throws Exception {
  
-        if("S".equals(searchType)){
-            
-            int updateCnt = boardDao.updateBoardHits(boardForm);
         
-            if (updateCnt > 0) {
-                boardDto = boardDao.getBoardDetail(boardForm);
-            }
-            
-        } else {
-            
-            boardDto = boardDao.getBoardDetail(boardForm);
-        }
  
-        return boardDto;
     }
  
-    /** 게시판 - 등록 */
-    public BoardDto insertBoard(BoardForm boardForm) throws Exception {
- 
-        BoardDto boardDto = new BoardDto();
- 
-        int insertCnt = boardDao.insertBoard(boardForm);
- 
-        if (insertCnt > 0) {
-            boardDto.setResult("SUCCESS");
-        } else {
-            boardDto.setResult("FAIL");
-        }
- 
-        return boardDto;
+    // 게시판 update
+    public void updateBoard(HashMap<String, Object> updateBoard) throws Exception {
+    	boardDao.updateBoard(updateBoard);
     }
- 
-    /** 게시판 - 삭제 */
-    public BoardDto deleteBoard(BoardForm boardForm) throws Exception {
- 
-        BoardDto boardDto = new BoardDto();
- 
-        int deleteCnt = boardDao.deleteBoard(boardForm);
- 
-        if (deleteCnt > 0) {
-            boardDto.setResult("SUCCESS");
-        } else {
-            boardDto.setResult("FAIL");
-        }
- 
-        return boardDto;
-    }
- 
-    /** 게시판 - 수정 */
-    public BoardDto updateBoard(BoardForm boardForm) throws Exception {
- 
-        BoardDto boardDto = new BoardDto();
- 
-        int deleteCnt = boardDao.updateBoard(boardForm);
- 
-        if (deleteCnt > 0) {
-            boardDto.setResult("SUCCESS");
-        } else {
-            boardDto.setResult("FAIL");
-        }
- 
-        return boardDto;
+    
+    // 조회수 count
+    public void countHit(int boardNum) throws Exception{
+    	boardDao.countHit(boardNum);
     }
 }

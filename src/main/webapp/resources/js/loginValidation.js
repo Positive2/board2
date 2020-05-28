@@ -44,7 +44,8 @@ function validateLogin() {
 				{
 					
 					alert(data + " 님 안녕하세요");
-					location.href = "boardList";
+					alert("좋은하루되세요.");
+					location.href = "getBoardList";
 				}
 			} else {
 				alert("다시 로그인 해주세요");

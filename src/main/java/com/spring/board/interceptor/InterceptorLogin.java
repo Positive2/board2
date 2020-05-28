@@ -1,10 +1,10 @@
 package com.spring.board.interceptor;
 
-import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -16,23 +16,17 @@ public class InterceptorLogin extends HandlerInterceptorAdapter{
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws Exception {
+		
+		System.out.println("InterceptorLogin ok");
 		//객체를 가져옴
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("session");
-		
-		
-		  response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
-		  response.getWriter();
-		 
-		
-
+		System.out.println(obj);
 		//로그인 필요한상태
 		if(obj == null) {
 			
-			 out.println("<script>alert('로그인이 필요합니다.. 로그인페이지로 이동')</script>");
-			 out.flush();
-			 
-			response.sendRedirect("../login");
+			response.sendRedirect("../board/login");
+			
 			return false;
 		}
 		System.out.println("preHandler ok");

@@ -20,7 +20,7 @@ public class UserService {
 	
 	// 아이디 중복 확인 매서드
 	public int idCheck(String checkId) throws Exception{
-		int check = -2;
+		int check = 2;
 		check = userDao.idCheck(checkId);
 		return check;
 	}
