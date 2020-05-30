@@ -39,12 +39,12 @@
 				<!-- 내용 -->
 				<div class="form-group">
 					<label>내용 </label>
-					<textarea id="content"  name ="content" class="form-control" rows="5"  >내용을입력하세요.</textarea>
+					<textarea id="content"  name ="content" class="form-control" rows="5" placeholder="내용입력" ></textarea>
 				</div>
 				
 				<!-- updateVaildate.js -->
 				<div class="form-group text-center">
-					<button class="btn btn-primary" onClick="validateWrite();return false;" >수정하기</button>
+					<button class="btn btn-primary" onClick="validateWrite();return false;" >작성완료</button>
 				</div>
 			</form>
 		</div>

@@ -16,6 +16,19 @@
 #table1:hover tbody tr:hover td {
     background: green;
     color: black;
+    
+table,
+thead,
+tr,
+tbody,
+th,
+td {
+  text-align: center;
+}
+
+.table td {
+  text-align: center;
+}
 }
 </style>
 
@@ -35,23 +48,16 @@
 	<div class="container">
 		<h2>게시글 목록</h2>
 		<form id="boardForm" name="boardForm">
-			<table width="100%" id="table1" class="table table-striped table-hover" >
-				<colgroup>
-					<col width="10%" />
-					<col width="25%" />
-					<col width="10%" />
-					<col width="15%" />
-					<col width="20%" />
-					<col width="20%" />
-				</colgroup>
-				<thead>
+			<table width="100%" id="table1" class="table table-striped table-hover ">
+				
+				<thead> 
 					<tr>
 						<th>글번호</th>
 						<th>제목</th>
 						<th>작성자</th>
-						<th>조회수</th>
-						<th>추천</th>
 						<th>등록일</th>
+						<th>추천</th>
+						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -60,17 +66,17 @@
 							<td >${list.board_num}</td>
 							<td>${list.board_title}</td>
 							<td>${list.board_writer}</td>
-							<td>${list.board_hit}</td>
-							<td>${list.board_recommend}</td>							
 							<td>
 								<fmt:formatDate value="${list.board_reg_date}" pattern ="yyyy년 MM월 dd일"/>
 							</td>
+							<td>${list.board_recommend}</td>							
+							<td>${list.board_hit}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</form>
-		<div class="float-right">
+		<div class="form-group text-right">
 			<button type="button" class="btn btn-success"
 				onclick="location.href='boardWrite'">글 작성하기</button>
 		</div>
