@@ -15,8 +15,8 @@ public class BoardService {
     @Autowired
     private BoardDao boardDao;
     // 게시판 read
-    public BoardDto boardRead(HashMap<String, Object> updateBoard) throws Exception{
-    	return boardDao.boardRead(updateBoard);
+    public BoardDto boardRead(HashMap<String, Object> boardRead) throws Exception{
+    	return boardDao.boardRead(boardRead);
     }
     
     // 게시판 조회
@@ -35,10 +35,8 @@ public class BoardService {
     }
  
     // 게시판 delete
-    public void deleteBoard() throws Exception {
- 
-        
- 
+    public void deleteBoard(HashMap<String, Object> deleteBoard) throws Exception {
+    	boardDao.deleteBoard(deleteBoard);
     }
  
     // 게시판 update

@@ -45,4 +45,9 @@
     	VALUES((select max(BOARD_NUM)+1 BOARD_NUM from board.TB_BOARD board),
     	#{title}, #{content}, #{id})
     </insert>
+    
+    <delete id="deleteBoard" >
+    	DELETE FROM board.TB_BOARD
+    	where BOARD_NUM = #{board_num}
+    </delete>
 </mapper>

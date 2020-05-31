@@ -17,8 +17,8 @@ public class BoardDao {
  
     private static final String NAMESPACE = "com.spring.board.boardMapper";
  
-    public BoardDto boardRead(HashMap<String, Object> updateBoard) throws Exception{
-    	return sqlSession.selectOne(NAMESPACE + ".boardRead" ,updateBoard);
+    public BoardDto boardRead(HashMap<String, Object> boardRead) throws Exception{
+    	return sqlSession.selectOne(NAMESPACE + ".boardRead" ,boardRead);
     }
     
     // 게시판 List조회  
@@ -44,9 +44,9 @@ public class BoardDao {
     }
     
     // 게시판 Delete  
-    public int deleteBoard() throws Exception {
+    public int deleteBoard(HashMap<String, Object> deleteBoard) throws Exception {
         
-        return sqlSession.delete(NAMESPACE + ".deleteBoard" );
+        return sqlSession.delete(NAMESPACE + ".deleteBoard", deleteBoard );
     }
     
     // 게시판 Update  

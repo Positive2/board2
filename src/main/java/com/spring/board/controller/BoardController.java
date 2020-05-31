@@ -83,16 +83,23 @@ public class BoardController {
     }
     
     // 게시판  삭제 
-    @RequestMapping( value = "/boardDelete")
-    @ResponseBody
-    public void deleteBoard(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        
+    @RequestMapping( value = "board/boardDelete")
+    
+    public String boardDelete(@RequestParam HashMap<String, Object> deleteBoard, HttpSession session, Model model) throws Exception{
+    	BoardDto bDto = boardService.boardRead(deleteBoard);
+    	
+    	UserDto uDto = (UserDto) session.getAttribute("session");
+    	if(bDto.getBoard_writer().equals(uDto.getU_id())) {
+    		boardService.deleteBoard(deleteBoard);
+    	}
+    	
+    	return "redirect:/getBoardList";
     }
     
     // 게시판 글수정
     @RequestMapping( value = "/board/boardUpdate")
     public String boardUpdate(@RequestParam HashMap<String, Object> updateBoard, HttpServletRequest request, HttpServletResponse response ) throws Exception{
-    	 
+    	
       	boardService.updateBoard(updateBoard);
  
     	return "redirect:/getBoardList";

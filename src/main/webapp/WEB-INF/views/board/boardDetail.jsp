@@ -73,7 +73,7 @@
 				<div class="form-group text-center">
 					<button type="button" class="btn btn btn-secondary" onclick="location.href='getBoardList'">메인화면</button>
 					<button type="button" class="btn btn btn-primary" onclick="location.href='boardUpdate?board_num=${list.board_num}'">수정하기</button>
-					<button type="button" class="btn btn-danger" onclick="">삭제하기</button>
+					<button type="button" class="btn btn-danger" onclick="location.href='board/boardDelete?board_num=${list.board_num}'">삭제하기</button>
 				</div>
 		</div>
 	</article>    

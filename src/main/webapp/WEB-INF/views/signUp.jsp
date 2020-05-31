@@ -37,14 +37,17 @@
 		<div class="col-sm-6 col-md-offset-3">
 			<!-- 회원가입 양식-->
 			<form id="signUp" action="signUpForm/signUp" method="post">
+				
+				
 				<!-- 아이디 -->
 				<div class="form-group">
 					<label>아이디</label> <input id="id" name="id" type="text"
-						class="form-control" placeholder="4자리 이상 아이디를 입력하세요"> <a
-						id="checkDupId" onclick="checkDupId()">중복확인</a>
+						class="form-control" placeholder="4자리 이상 아이디를 입력하세요"> 
+						<a type ="button" onClick="checkDupId()" >중복확인</a>
+						
 				</div>
 
-
+				<input type="hidden" id="checkDupId" name="checkDupId" value="0">
 				<!-- 비밀번호 -->
 				<div class="form-group">
 					<label>비밀번호</label> <input id="pwd" name="pwd" type="password"

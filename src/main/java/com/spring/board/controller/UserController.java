@@ -66,17 +66,17 @@ public class UserController {
     @RequestMapping(value="signUpForm/signUp")
     public String SignUp(@RequestParam HashMap<String, Object> signUpFormMap) throws Exception{
     	
-    	userService.signUp(signUpFormMap);
-    	return "redirect:/getBoardList"; //게시판으로 이동
+    		userService.signUp(signUpFormMap);
+    		return "redirect:/getBoardList"; //게시판으로 이동
     }
     
-    // 아이디 중복채크
+    // 아이디 중복체크
     @RequestMapping(value="signUpForm/checkDupId")
     public @ResponseBody String checkDupId(@RequestParam String id) throws Exception{
-    	int result =0;
+    	int result =-1;
     	String checkId = "";
     	result = userService.idCheck(id);
-    	//아이디 0이면 사용가능 1이면 중복
+    	//아이디 0이면 사용가능 1이면 중복 
     	if(result == 0) {
     		checkId =id;
     	}

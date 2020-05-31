@@ -12,6 +12,11 @@ function validateSignUp(){
 		return;
 	}
 	
+	if($("#checkDupId").val() == 0){
+		alert("아이디 중복체크를 눌러주세요.");
+		return;
+	}
+	
 	if($("#pwd").val() == ""){
 		alert("비밀번호를 입력하세요");
 		$("#pwd").focus();
@@ -96,8 +101,16 @@ function validateSignUp(){
 		$("#phone").focus();
 		return;
 	}
-	alert("정상적으로 회원가입이 되었습니다. 로그인해 주세요.");
 	
+	if(isNaN($("#phone"))){
+		alert("휴대폰 번호를 다시 확인해주세요 (총11자리)");
+		$("#phone").val("");
+		$("#phone").focus();
+		return;
+	}
+	
+	if("#phone".val().length != 11)
+	alert("정상적으로 회원가입이 되었습니다. 로그인해 주세요.");
 	$("#signUp").submit();
 }
 
@@ -129,6 +142,7 @@ function checkDupId(){
 				$("#id").focus();
 			}else{
 				alert("사용가능한 아이딥니다.!");
+				$("#checkDupId").val("1");
 				$("#pwd").focus();
 			}
 		}
