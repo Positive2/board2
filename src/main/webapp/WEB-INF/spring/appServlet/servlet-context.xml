@@ -46,15 +46,14 @@
 	
 	
 	
-	<!-- 로그인 인터셉터 객체 생성 -->
+	<!-- 인터셉터 객체 생성 -->
 	<beans:bean id="InterceptorLogin" class="com.spring.board.interceptor.InterceptorLogin"/>
 
-	<!-- 로그인 인터셉터 설정 -->
+	<!-- 인터셉터 설정 -->
 	<interceptors>
 		<interceptor>
-			<!-- 맵핑 경로 요청이 수행되기 전에 로그인 인터셉터를 먼저 수행 -->
+			<!-- 맵핑 경로 요청이 수행되기 전에 인터셉터를 먼저 수행 -->
 			<!-- path 뒤에 컨트롤러 value -->
-			<mapping path="//boardUpdate"/>
 			<mapping path="/board/boardUpdate" />
 			<mapping path="/boardWrite"/>
 			<beans:ref bean="InterceptorLogin" />

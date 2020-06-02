@@ -21,7 +21,7 @@ public class InterceptorLogin extends HandlerInterceptorAdapter{
 		//객체를 가져옴
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("session");
-		System.out.println(obj);
+		
 		//로그인 필요한상태
 		if(obj == null) {
 			
@@ -29,7 +29,6 @@ public class InterceptorLogin extends HandlerInterceptorAdapter{
 			
 			return false;
 		}
-		System.out.println("preHandler ok");
 		return true;
 	}
 	
