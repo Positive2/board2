@@ -17,10 +17,13 @@
 <!--  JavaScript -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
+
+
 </head>
 
 
 <body>
+	
 	<!-- header -->
 	<jsp:include page="../commons/header.jsp"/>
 	
@@ -72,11 +75,14 @@
 				
 				<div class="form-group text-center">
 					<button type="button" class="btn btn btn-secondary" onclick="location.href='getBoardList'">메인화면</button>
-					<button type="button" class="btn btn btn-primary" onclick="location.href='boardUpdate?board_num=${list.board_num}'">수정하기</button>
-					<button type="button" class="btn btn-danger" onclick="location.href='board/boardDelete?board_num=${list.board_num}'">삭제하기</button>
+					<button type="button" id="updateBtn" class="btn btn btn-primary" onclick="location.href='boardUpdate?board_num=${list.board_num}'">수정하기</button>
+					<button type="button" id="deleteBtn" class="btn btn-danger" onclick="location.href='board/boardDelete?board_num=${list.board_num}'">삭제하기</button>
 				</div>
 		</div>
 	</article>    
 
 </body>
+
+
 </html>
+

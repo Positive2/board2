@@ -51,7 +51,7 @@
 				<!-- 비밀번호 -->
 				<div class="form-group">
 					<label>비밀번호</label> <input id="pwd" name="pwd" type="password"
-						class="form-control" placeholder="4자리 이상 아이디를 입력하세요">
+						class="form-control" placeholder="8자리 이상 비밀번호를 입력하세요">
 				</div>
 				<!-- 비밀번호 확인-->
 				<div class="form-group">

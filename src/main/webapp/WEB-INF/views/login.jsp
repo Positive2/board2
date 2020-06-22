@@ -45,7 +45,7 @@
 			
 			<!-- Remind Passowrd -->
 			<div id="formFooter">
-				<a class="underlineHover" href="#">회원가입 하셧나요?</a>
+				<a class="underlineHover" href="signUp">회원가입 하셧나요?</a>
 			</div>
 
 		</div>

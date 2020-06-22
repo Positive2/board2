@@ -1,6 +1,8 @@
 package com.spring.board.interceptor;
 
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,9 +26,7 @@ public class InterceptorLogin extends HandlerInterceptorAdapter{
 		
 		//로그인 필요한상태
 		if(obj == null) {
-			
-			response.sendRedirect("../board/login");
-			
+			response.sendRedirect("/board/login");
 			return false;
 		}
 		return true;
